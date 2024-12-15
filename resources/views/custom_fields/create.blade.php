@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('title','New Custom Field')
+@section('title','Novos campos personalizados')
 @section('content')
     <section class="content-header">
         <h1>
-            Custom Field
+            Campos Personalizados
         </h1>
     </section>
     <div class="content">

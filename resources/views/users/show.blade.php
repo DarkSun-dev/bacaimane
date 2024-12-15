@@ -1,22 +1,22 @@
 @extends('layouts.app')
-@section('title','Show User')
+@section('title','Mostrar usuario')
 @section('content')
     <section class="content-header" style="margin-bottom: 25px;">
         <h1 class="pull-left">
-            User
+            Usuário
         </h1>
         <span class="pull-right">
             <a href="{{ route('users.index') }}" class="btn btn-default">
-                <i class="fa fa-chevron-left" aria-hidden="true"></i> Back
+                <i class="fa fa-chevron-left" aria-hidden="true"></i> Voltar
             </a>
             <a href="{{ route('users.edit',$user->id) }}" class="btn btn-primary">
-                <i class="fa fa-edit" aria-hidden="true"></i> Edit
+                <i class="fa fa-edit" aria-hidden="true"></i> Editar
             </a>
             <a href="{{ route('users.blockUnblock', $user->id) }}" class="btn btn-warning">
-                <i class="fa fa-ban"></i> Block / Unblock
+                <i class="fa fa-ban"></i> Bloquear / Desbloquear
             </a>
             {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete','style'=>'display:inline']) !!}
-            {!! Form::button('<i class="fa fa-trash"></i> Delete', [
+            {!! Form::button('<i class="fa fa-trash"></i> Eliminar', [
             'type' => 'submit',
             'title' => 'Delete',
             'class' => 'btn btn-danger',
@@ -31,11 +31,11 @@
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#user" data-toggle="tab"
-                                              aria-expanded="true">User</a>
+                                              aria-expanded="true">Usuário</a>
                         </li>
                         @can('user manage permission')
                             <li class=""><a href="#tab_permissions" data-toggle="tab"
-                                            aria-expanded="false">Permission</a>
+                                            aria-expanded="false">Permissão</a>
                             </li>
                         @endcan
                     </ul>
@@ -49,12 +49,12 @@
                                 <thead>
                                 <tr>
                                     <th colspan="3"
-                                        style="font-size: 1.8rem;">Global Permissions
+                                        style="font-size: 1.8rem;">Permissão Mundial
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th>Module</th>
-                                    <th>Permissions</th>
+                                    <th>Modulo</th>
+                                    <th>Permissões</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -73,7 +73,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="2">No record found</td>
+                                        <td colspan="2">Nenhuma gravação encontrada</td>
                                     </tr>
                                 @endif
                                 </tbody>
@@ -83,18 +83,18 @@
                                 <tr>
                                     <th colspan="3"
                                         style="font-size: 1.8rem;">{{ucfirst(config('settings.document_label_plural'))}} {{config('settings.tags_label_singular')}}
-                                        wise permissions
+                                        Permissões Sabias
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>{{ucfirst(config('settings.tags_label_singular'))}}</th>
-                                    <th>Permissions</th>
+                                    <th>Permissões</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @if (count($tags)==0)
                                     <tr>
-                                        <td colspan="2">No record found</td>
+                                        <td colspan="2">Nenhuma gravação encontrada</td>
                                     </tr>
                                 @endif
                                 @foreach($tags as $tag)
@@ -118,18 +118,18 @@
                                 <tr>
                                     <th colspan="3"
                                         style="font-size: 1.8rem;">{{ucfirst(config('settings.document_label_singular'))}}
-                                        wise permissions
+                                        Permissões sabias
                                     </th>
                                 </tr>
                                 <tr>
                                     <th>{{ucfirst(config('settings.document_label_singular'))}}</th>
-                                    <th>Permissions</th>
+                                    <th>Permissões</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @if (count($documents)==0)
                                     <tr>
-                                        <td colspan="2">No record found</td>
+                                        <td colspan="2">Nenhuma gravação encontrada</td>
                                     </tr>
                                 @endif
                                 @foreach($documents as $document)

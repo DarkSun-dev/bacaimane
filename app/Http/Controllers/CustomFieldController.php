@@ -59,7 +59,7 @@ class CustomFieldController extends AppBaseController
 
         $customField = $this->customFieldRepository->create($input);
 
-        Flash::success('Custom Field saved successfully.');
+        Flash::success('Campos personalizados guardados com sucesso.');
 
         return redirect(route('customFields.index'));
     }
@@ -77,7 +77,7 @@ class CustomFieldController extends AppBaseController
         $customField = $this->customFieldRepository->find($id);
 
         if (empty($customField)) {
-            Flash::error('Custom Field not found');
+            Flash::error('Campos personalizados não encontrados');
 
             return redirect(route('customFields.index'));
         }
@@ -98,7 +98,7 @@ class CustomFieldController extends AppBaseController
         $customField = $this->customFieldRepository->find($id);
 
         if (empty($customField)) {
-            Flash::error('Custom Field not found');
+            Flash::error('Campos personalizados não encontrados');
 
             return redirect(route('customFields.index'));
         }
@@ -120,7 +120,7 @@ class CustomFieldController extends AppBaseController
         $customField = $this->customFieldRepository->find($id);
 
         if (empty($customField)) {
-            Flash::error('Custom Field not found');
+            Flash::error('Campos personalizados não encontrados');
 
             return redirect(route('customFields.index'));
         }
@@ -129,7 +129,7 @@ class CustomFieldController extends AppBaseController
         $input['suggestions'] = explode(",", $input['suggestions']);
         $customField = $this->customFieldRepository->update($input, $id);
 
-        Flash::success('Custom Field updated successfully.');
+        Flash::success('Campos personalizados actualizados com sucesso');
 
         return redirect(route('customFields.index'));
     }
@@ -147,14 +147,14 @@ class CustomFieldController extends AppBaseController
         $customField = $this->customFieldRepository->find($id);
 
         if (empty($customField)) {
-            Flash::error('Custom Field not found');
+            Flash::error('Campos personalizados não encontrados');
 
             return redirect(route('customFields.index'));
         }
 
         $this->customFieldRepository->delete($id);
 
-        Flash::success('Custom Field deleted successfully.');
+        Flash::success('Campos personalizados eliminados com sucesso.');
 
         return redirect(route('customFields.index'));
     }

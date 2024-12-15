@@ -30,6 +30,6 @@ class AppBaseController extends Controller
 
     protected function isSuperAdmin()
     {
-        return abort_if(!auth()->user()->is_super_admin, 403, 'This action is unauthorized.');
+        return abort_if(!auth()->user()->is_super_admin, 403, 'Esta ação não é autorizada.');
     }
 }

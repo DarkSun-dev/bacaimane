@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('title',"Add ".ucfirst(config('settings.document_label_singular')))
+@section('title',"Adicionar Pasta")
 @section('content')
     <section class="content-header">
         <h1>
-            {{ucfirst(config('settings.document_label_singular'))}}
+            <!---{{ucfirst(config('settings.document_label_singular'))}}--->Pastas
         </h1>
     </section>
     <div class="content">

@@ -64,16 +64,16 @@ class CreateFilesRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => 'This field is required.',
-            'numeric' => 'This field must be a number.',
+            'required' => 'Este campo é obrigatório.',
+            'numeric' => 'Este campo deve ser um número.',
             'max' => [
-                'file' => 'Large File, This file should be less than :max kilobytes.',
+                'file' => 'Arquivo grande, este arquivo deve ser menor que: maximo em kilobytes.',
             ],
             'size' => [
-                'file' => 'Large File, This file should be less than :size kilobytes.',
+                'file' => 'Arquivo grande, este arquivo deve ser menor que: tamanho em kilobytes.',
             ],
-            'mimes' => 'This file must be of type: :values.',
-            'uploaded' => 'Failed to upload this file.',
+            'mimes' => 'Este arquivo deve ser do tipo: :valores.',
+            'uploaded' => 'Falha ao enviar este ficheiro.',
         ];
     }
 }

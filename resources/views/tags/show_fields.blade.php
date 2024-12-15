@@ -1,13 +1,13 @@
 <!-- Name Field -->
 <div class="form-group">
-    {!! Form::label('name', 'Name:') !!}
+    {!! Form::label('name', 'Nome:') !!}
     <p>{{ $tag->name }}</p>
 </div>
 
 
 <!-- Color Field -->
 <div class="form-group">
-    {!! Form::label('color', 'Color:') !!}
+    {!! Form::label('color', 'Cor:') !!}
     <p>{!! '<span class="label" style="background-color: '.$tag->color.'">'.$tag->color.'</span>'  !!}</p>
 </div>
 
@@ -22,20 +22,20 @@
 
 <!-- Created By Field -->
 <div class="form-group">
-    {!! Form::label('created_by', 'Created By:') !!}
+    {!! Form::label('created_by', 'Criado por:') !!}
     <p>{{ $tag->createdBy->name }}</p>
 </div>
 
 <!-- Created At Field -->
 <div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
+    {!! Form::label('created_at', 'Criado em:') !!}
     <p>{{ $tag->created_at }}</p>
 </div>
 
 
 <!-- Updated At Field -->
 <div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
+    {!! Form::label('updated_at', 'Atualizado em:') !!}
     <p>{{ $tag->updated_at }}</p>
 </div>
 

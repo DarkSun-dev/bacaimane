@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Home')
+@section('title','Inicio')
 @section('scripts')
     <script>
         function gotoUpload() {
@@ -13,14 +13,14 @@
             $('#activityrange').daterangepicker(
                 {
                     ranges   : {
-                        'Today'       : [moment(), moment()],
-                        'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                        'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                        'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-                        'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                        'Hoje'       : [moment(), moment()],
+                        'Ontem'   : [moment().subtract(1, 'dias'), moment().subtract(1, 'dias')],
+                        'Últimos 7 dias' : [moment().subtract(6, 'dias'), moment()],
+                        'Últimos 30 dias': [moment().subtract(29, 'dias'), moment()],
+                        'Este mês'  : [moment().startOf('mês'), moment().endOf('mês')],
+                        'Mês Passado'  : [moment().subtract(1, 'mês').startOf('mês'), moment().subtract(1, 'mês').endOf('mês')]
                     },
-                    startDate: moment().subtract(29, 'days'),
+                    startDate: moment().subtract(29, 'dias'),
                     endDate  : moment()
                 },
                 function (start, end) {
@@ -39,7 +39,7 @@
 @stop
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Dashboard</h1>
+        <h1 class="pull-left">Principal</h1>
     </section>
     <section class="content" style="margin-top: 20px;">
         <div class="clearfix"></div>
@@ -48,7 +48,7 @@
             <div class="col-md-8">
                 <div class="box box-default">
                     <div class="box-header no-border text-center">
-                        <h3 class="box-title">Quick Upload</h3>
+                        <h3 class="box-title">Atualização Rapida</h3>
 
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -61,7 +61,7 @@
                     <div class="box-body">
                         <form action="#" class="text-center" style="width: 30vw;margin: 0 auto;" onsubmit="return gotoUpload()">
                             <div class="form-group">
-                                <label for="">Choose {{ucfirst(config('settings.document_label_singular'))}}</label>
+                                <label for="">Escolha {{ucfirst(config('settings.document_label_singular'))}}</label>
                                 <select name="document_id" id="document_id" class="form-control select2" required>
                                     @foreach ($documents as $document)
                                         @can('view',$document)
@@ -71,7 +71,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-primary">Upload</button>
+                                <button class="btn btn-primary">Atualizar</button>
                             </div>
                         </form>
                     </div>
@@ -85,7 +85,7 @@
                         <span class="info-box-text">{{ucfirst(config('settings.tags_label_plural'))}}</span>
                         <span class="info-box-number">{{$tagCounts}}</span>
                         <span class="progress-description">
-                    Total {{ucfirst(config('settings.tags_label_plural'))}} in system
+                    Total {{ucfirst(config('settings.tags_label_plural'))}} no sistema
                   </span>
                     </div>
                     <!-- /.info-box-content -->
@@ -97,7 +97,7 @@
                         <span class="info-box-text">{{ucfirst(config('settings.document_label_plural'))}}</span>
                         <span class="info-box-number">{{$documentCounts}}</span>
                         <span class="progress-description">
-                    Containing {{$filesCounts}} {{ucfirst(config('settings.file_label_plural'))}}
+                    Contendo {{$filesCounts}} {{ucfirst(config('settings.file_label_plural'))}}
                   </span>
                     </div>
                     <!-- /.info-box-content -->
@@ -108,21 +108,21 @@
             <div class="col-sm-12">
                 <div class="box box-default">
                     <div class="box-header no-border">
-                        <h3 class="box-title">Activity</h3>
+                        <h3 class="box-title">Actividades</h3>
 
                         <div class="box-tools pull-right">
                             {!! Form::open(['method' => 'get','style'=>'display:inline;']) !!}
                                 {!! Form::hidden('activity_range', '', ['id' => 'activity_range']) !!}
                                 <button type="button" id="activityrange" class="btn btn-default btn-sm">
                                     <i class="fa fa-calendar"></i>&nbsp;
-                                    <span>Choose dates</span> <i class="fa fa-caret-down"></i>
+                                    <span>Escolha a Data</span> <i class="fa fa-caret-down"></i>
                                 </button>
                                 {!! Form::button('<i class="fa fa-filter"></i>&nbsp;Filter', ['class' => 'btn btn-default btn-sm','type'=>'submit']) !!}
                             {!! Form::close() !!}
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                     class="fa fa-minus"></i>
                             </button>
-                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                            <button type="button" class="btn btn-box-tool" data-widget="remover"><i
                                     class="fa fa-times"></i></button>
                         </div>
                     </div>
@@ -139,9 +139,9 @@
 
                                     <div class="timeline-item">
                                             <span class="time" data-toggle="tooltip"
-                                                  title="{{formatDateTime($activity->created_at)}}"><i
-                                                    class="fa fa-clock-o"></i> {{\Carbon\Carbon::parse($activity->created_at)->diffForHumans()}}</span>
-
+                                                title="{{formatDateTime($activity->created_at)}}"><i
+                                                class="fa fa-clock-o"></i> {{\Carbon\Carbon::parse($activity->created_at)->diffForHumans()}}
+                                            </span>
                                         <h4 class="timeline-header no-border">{!! $activity->activity !!}</h4>
                                     </div>
                                 </li>

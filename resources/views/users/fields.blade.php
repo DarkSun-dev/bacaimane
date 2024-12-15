@@ -46,7 +46,7 @@
 @endcan
 <div class="box box-primary">
     <div class="box-header no-border">
-        <h3 class="box-title">User Detail</h3>
+        <h3 class="box-title">Detalhes do Usuário</h3>
 
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -57,52 +57,49 @@
         <div class="row">
             <!-- Name Field -->
             <div class="form-group col-sm-6 {{ $errors->has('name') ? 'has-error' :'' }}">
-                {!! Form::label('name', 'Name:') !!}
+                {!! Form::label('name', 'Nome:') !!}
                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
                 {!! $errors->first('name','<span class="help-block">:message</span>') !!}
             </div>
 
-
             <!-- Email Field -->
             <div class="form-group col-sm-6 {{ $errors->has('email') ? 'has-error' :'' }}">
-                {!! Form::label('email', 'Email:') !!}
+                {!! Form::label('email', 'Correio Eletrônico:') !!}
                 {!! Form::email('email', null, ['class' => 'form-control']) !!}
                 {!! $errors->first('email','<span class="help-block">:message</span>') !!}
             </div>
 
-
             <!-- Username Field -->
             <div class="form-group col-sm-6 {{ $errors->has('username') ? 'has-error' :'' }}">
-                {!! Form::label('username', 'Username:') !!}
+                {!! Form::label('username', 'Nome de Usuário:') !!}
                 {!! Form::text('username', null, ['class' => 'form-control']) !!}
                 {!! $errors->first('username','<span class="help-block">:message</span>') !!}
             </div>
 
-
             <!-- Address Field -->
             <div class="form-group col-sm-6 {{ $errors->has('address') ? 'has-error' :'' }}">
-                {!! Form::label('address', 'Address:') !!}
+                {!! Form::label('address', 'Endereço:') !!}
                 {!! Form::text('address', null, ['class' => 'form-control']) !!}
                 {!! $errors->first('address','<span class="help-block">:message</span>') !!}
             </div>
 
             <!-- Password Field -->
             <div class="form-group col-sm-6 {{ $errors->has('password') ? 'has-error' :'' }}">
-                {!! Form::label('password', 'Password:') !!}
+                {!! Form::label('password', 'Senha:') !!}
                 {!! Form::text('password', null, ['class' => 'form-control']) !!}
                 {!! $errors->first('password','<span class="help-block">:message</span>') !!}
             </div>
 
             {{--Status Filed--}}
             <div class="form-group col-sm-6 {{ $errors->has('status') ? 'has-error' :'' }}">
-                {!! Form::label('status', 'Status:') !!}
+                {!! Form::label('status', 'Situação:') !!}
                 {!! Form::select('status', [config('constants.STATUS.ACTIVE') => config('constants.STATUS.ACTIVE'), config('constants.STATUS.BLOCK') => config('constants.STATUS.BLOCK')],null, ['class'=>'form-control']); !!}
                 {!! $errors->first('status','<span class="help-block">:message</span>') !!}
             </div>
 
             <!-- Description Field -->
             <div class="form-group col-sm-12 col-lg-12 {{ $errors->has('description') ? 'has-error' :'' }}">
-                {!! Form::label('description', 'Description(Additional Information):') !!}
+                {!! Form::label('description', 'Descrição(Informação adicional):') !!}
                 {!! Form::textarea('description', null, ['class' => 'form-control b-wysihtml5-editor']) !!}
                 {!! $errors->first('description','<span class="help-block">:message</span>') !!}
             </div>
@@ -112,7 +109,7 @@
 @can('user manage permission')
     <div class="box box-primary">
         <div class="box-header no-border">
-            <h3 class="box-title">Global Permissions</h3>
+            <h3 class="box-title">Permissões Globais</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -124,20 +121,47 @@
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-4">
-                            <label class="control-label">User</label><br>
-                            @foreach(config('constants.GLOBAL_PERMISSIONS.USERS') as $permission_name=>$permission_label)
+                            <label class="control-label">Usuário</label><br>
+                            {{--@foreach(config('constants.GLOBAL_PERMISSIONS.USERS') as $permission_name=>$permission_label)
                                 <div class="form-group">
                                     <label>
                                         <input name="global_permissions[]" type="checkbox" class="iCheck-helper"
                                                value="{{$permission_name}}" {{optional($user ?? null)->can($permission_name)?'checked':''}}>
-                                        &nbsp;{{ucfirst($permission_label)}} Users
+                                        &nbsp;{{ucfirst($permission_label)}} Usuários
                                     </label>
                                 </div>
-                            @endforeach
+                            @endforeach--}}
+                            <div class="form-group">
+                                <label>
+                                    <input name="global_permissions[]" type="checkbox" class="iCheck-helper"
+                                           value="">
+                                    &nbsp;Criar Usuários
+                                </label><br><br>
+                                <label>
+                                    <input name="global_permissions[]" type="checkbox" class="iCheck-helper"
+                                           value="">
+                                    &nbsp;Ler Usuários
+                                </label><br><br>
+                                <label>
+                                    <input name="global_permissions[]" type="checkbox" class="iCheck-helper"
+                                           value="">
+                                    &nbsp;Atualizar Usuários
+                                </label><br><br>
+                                <label>
+                                    <input name="global_permissions[]" type="checkbox" class="iCheck-helper"
+                                           value="">
+                                    &nbsp;Eliminar Usuários
+                                </label><br><br>
+                                <label>
+                                    <input name="global_permissions[]" type="checkbox" class="iCheck-helper"
+                                           value="">
+                                    &nbsp;Gerir Permissões do Usuário
+                                </label>
+                            </div>
                         </div>
                         <div class="col-sm-4">
                             <label class="control-label">{{ucfirst(config('settings.tags_label_plural'))}}</label><br>
-                            @foreach(config('constants.GLOBAL_PERMISSIONS.TAGS') as $permission_name=>$permission_label)
+                            {{--@foreach(config('constants.GLOBAL_PERMISSIONS.TAGS') as $permission_name=>$permission_label)
                                 <div class="form-group">
                                     <label>
                                         <input name="global_permissions[]" type="checkbox" class="iCheck-helper"
@@ -145,12 +169,36 @@
                                         &nbsp;{{ucfirst($permission_label)}} {{ucfirst(config('settings.tags_label_plural'))}}
                                     </label>
                                 </div>
-                            @endforeach
+                            @endforeach--}}
+                            
+                            {{--Optei por usar este metodo para facilitar na traducao para portugues--}}
+
+                            <div class="form-group">
+                                <label>
+                                    <input name="global_permissions[]" type="checkbox" class="iCheck-helper"
+                                           value="" >
+                                    &nbsp;Criar {{ucfirst(config('settings.tags_label_plural'))}}
+                                    </label><br><br>
+                                    <label>
+                                    <input name="global_permissions[]" type="checkbox" class="iCheck-helper"
+                                           value="" >
+                                    &nbsp;Ler {{ucfirst(config('settings.tags_label_plural'))}}
+                                    </label><br><br>
+                                    <label>
+                                    <input name="global_permissions[]" type="checkbox" class="iCheck-helper"
+                                           value="" >
+                                    &nbsp;Atualizar {{ucfirst(config('settings.tags_label_plural'))}}
+                                    </label><br><br>
+                                    <label>
+                                    <input name="global_permissions[]" type="checkbox" class="iCheck-helper"
+                                           value="" >
+                                    &nbsp;Eliminar {{ucfirst(config('settings.tags_label_plural'))}}
+                                </label>
+                            </div>
                         </div>
                         <div class="col-sm-4">
-                            <label
-                                class="control-label">{{ucfirst(config('settings.document_label_plural'))}}</label><br>
-                            @foreach(config('constants.GLOBAL_PERMISSIONS.DOCUMENTS') as $permission_name=>$permission_label)
+                            <label class="control-label">{{ucfirst(config('settings.document_label_plural'))}}</label><br>
+                            {{---@foreach(config('constants.GLOBAL_PERMISSIONS.DOCUMENTS') as $permission_name=>$permission_label)
                                 <div class="form-group">
                                     <label>
                                         <input name="global_permissions[]" type="checkbox" class="iCheck-helper"
@@ -158,7 +206,37 @@
                                         &nbsp;{{ucfirst($permission_label)}} {{ucfirst(config('settings.document_label_plural'))}}
                                     </label>
                                 </div>
-                            @endforeach
+                            @endforeach---}}
+
+                            {{--Optei por usar este metodo para facilitar na traducao para portugues--}}
+
+                            <div class="form-group">
+                                <label>
+                                    <input name="" type="checkbox" class="iCheck-helper"
+                                           value="" >
+                                    &nbsp;Criar {{ucfirst(config('settings.document_label_plural'))}}
+                                </label><br><br>
+                                <label>
+                                    <input name="" type="checkbox" class="iCheck-helper"
+                                           value="" >
+                                    &nbsp;Ler {{ucfirst(config('settings.document_label_plural'))}}
+                                </label><br><br>
+                                <label>
+                                    <input name="" type="checkbox" class="iCheck-helper"
+                                           value="" >
+                                    &nbsp;Atualizar {{ucfirst(config('settings.document_label_plural'))}}
+                                </label><br><br>
+                                <label>
+                                    <input name="" type="checkbox" class="iCheck-helper"
+                                           value="" >
+                                    &nbsp;Eliminar {{ucfirst(config('settings.document_label_plural'))}}
+                                </label><br><br>
+                                <label>
+                                    <input name="" type="checkbox" class="iCheck-helper"
+                                           value="" >
+                                    &nbsp;Verificar {{ucfirst(config('settings.document_label_plural'))}}
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -167,9 +245,9 @@
     </div>
     <div class="box box-primary">
         <div class="box-header no-border">
-            <h3 class="box-title">{{ucfirst(config('settings.tags_label_plural'))}} Wise Permissions</h3>
+            <h3 class="box-title">{{ucfirst(config('settings.tags_label_plural'))}} Permissões Sábias</h3>
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                <button type="bu    tton" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
             </div>
         </div>
@@ -179,10 +257,18 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Select {{ucfirst(config('settings.tags_label_singular'))}}</th>
-                            @foreach (config('constants.TAG_LEVEL_PERMISSIONS')  as $perm)
+                            <th>Seleccione {{ucfirst(config('settings.tags_label_singular'))}}</th>
+                            {{--@foreach (config('constants.TAG_LEVEL_PERMISSIONS')  as $perm)
                                 <th>{{ucfirst($perm)}}</th>
-                            @endforeach
+                            @endforeach--}}
+                            
+                            {{--Optei por usar este metodo para facilitar na traducao para portugues--}}
+
+                            <th>Criar</th>
+                            <th>Ler</th>
+                            <th>Atualizar</th>
+                            <th>Eliminar</th>
+                            <th>Verificar</th>
                         </tr>
                         </thead>
                         <tbody id="permission-body">
@@ -191,8 +277,8 @@
                         <tfoot>
                         <tr>
                             <td colspan="6">
-                                <button type="button" onclick="addRow()" class="btn btn-info btn-xs">Add
-                                    new {{config('settings.tags_label_singular')}}</button>
+                                <button type="button" onclick="addRow()" class="btn btn-info btn-xs">Adicionar nova 
+                                {{config('settings.tags_label_singular')}}</button>
                             </td>
                         </tr>
                         </tfoot>
@@ -204,6 +290,6 @@
 @endcan
 <!-- Submit Field -->
 <div class="form-group">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('users.index') !!}" class="btn btn-default">Cancel</a>
+    {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
+    <a href="{!! route('users.index') !!}" class="btn btn-default">Cancelar</a>
 </div>

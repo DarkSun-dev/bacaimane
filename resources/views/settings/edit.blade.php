@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('title','Edit Settings')
+@section('title','Editar Definições')
 @section('content')
     <section class="content-header">
         <h1>
-            Setting
+            Definições
         </h1>
    </section>
    <div class="content">

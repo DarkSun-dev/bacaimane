@@ -73,10 +73,10 @@ class HomeController extends AppBaseController
         $data = $request->all();
         if($request->isMethod('POST')){
             if($request->has('btnprofile')){
-                \Flash::success("Profile Updated Successfully");
+                \Flash::success("Perfil atualizado com sucesso");
             }elseif ($request->has('btnpass')){
                 $data['password'] = bcrypt($data['new_password']);
-                \Flash::success('Password Updated Successfully');
+                \Flash::success('Password atualizado com sucesso');
             }
             $profile->update($data);
             return redirect()->route('profile.manage');

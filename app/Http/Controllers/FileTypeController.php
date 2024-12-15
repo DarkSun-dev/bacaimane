@@ -58,7 +58,7 @@ class FileTypeController extends AppBaseController
 
         $fileType = $this->fileTypeRepository->create($input);
 
-        Flash::success('File Type saved successfully.');
+        Flash::success('Tipo de ficheiro salvo com sucesso.');
 
         return redirect(route('fileTypes.index'));
     }
@@ -76,7 +76,7 @@ class FileTypeController extends AppBaseController
         $fileType = $this->fileTypeRepository->find($id);
 
         if (empty($fileType)) {
-            Flash::error('File Type not found');
+            Flash::error('Tipo de ficheiro não encontrado');
 
             return redirect(route('fileTypes.index'));
         }
@@ -97,7 +97,7 @@ class FileTypeController extends AppBaseController
         $fileType = $this->fileTypeRepository->find($id);
 
         if (empty($fileType)) {
-            Flash::error('File Type not found');
+            Flash::error('Tipo de ficheiro não encontrado');
 
             return redirect(route('fileTypes.index'));
         }
@@ -119,14 +119,14 @@ class FileTypeController extends AppBaseController
         $fileType = $this->fileTypeRepository->find($id);
 
         if (empty($fileType)) {
-            Flash::error('File Type not found');
+            Flash::error('Tipo de ficheiro não encontrado');
 
             return redirect(route('fileTypes.index'));
         }
 
         $fileType = $this->fileTypeRepository->update($request->all(), $id);
 
-        Flash::success('File Type updated successfully.');
+        Flash::success('Tipo de ficheiro atualizado com sucesso.');
 
         return redirect(route('fileTypes.index'));
     }
@@ -144,14 +144,14 @@ class FileTypeController extends AppBaseController
         $fileType = $this->fileTypeRepository->find($id);
 
         if (empty($fileType)) {
-            Flash::error('File Type not found');
+            Flash::error('Tipo de ficheiro não encontrado');
 
             return redirect(route('fileTypes.index'));
         }
 
         $this->fileTypeRepository->delete($id);
 
-        Flash::success('File Type deleted successfully.');
+        Flash::success('Tipo de ficheiro eliminado com sucesso.');
 
         return redirect(route('fileTypes.index'));
     }

@@ -70,11 +70,11 @@ class UserDataTable extends DataTable
     {
         return [
             'id',
-            'name',
-            'email',
-            'username',
-            'address',
-            'status'
+            'nome',
+            'correio eletrônico',
+            'nome do usuário',
+            'endereço',
+            'situação'
         ];
     }
 

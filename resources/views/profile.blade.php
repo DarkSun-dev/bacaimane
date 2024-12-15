@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Profile')
+@section('title','Perfil')
 @section('scripts')
     <script>
         $(function () {
@@ -16,7 +16,7 @@
 @section('content')
     <section class="content-header" style="margin-bottom: 25px;">
         <h1 class="pull-left">
-            Profile
+            Perfil
         </h1>
     </section>
     <div class="content">
@@ -29,14 +29,14 @@
             <div class="col-sm-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#profile" data-toggle="tab" aria-expanded="true">Profile</a></li>
-                        <li class=""><a href="#ch_pwd" data-toggle="tab" aria-expanded="false">Change Password</a></li>
+                        <li class="active"><a href="#profile" data-toggle="tab" aria-expanded="true">Perfil</a></li>
+                        <li class=""><a href="#ch_pwd" data-toggle="tab" aria-expanded="false">Trocar Senha</a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="profile">
                             {!! Form::model($profile,['class'=>'form-horizontal']) !!}
                             <div class="form-group {{$errors->has('name')?'has-error':''}}">
-                                {!! Form::label('name', 'Name:', ['class' => 'control-label col-sm-2']) !!}
+                                {!! Form::label('name', 'Nome:', ['class' => 'control-label col-sm-2']) !!}
                                 <div class="col-sm-8">
                                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
                                     {!! $errors->first("name",'<span class="help-block">:message</span>') !!}
@@ -50,21 +50,21 @@
                                 </div>
                             </div>
                             <div class="form-group {{$errors->has('username')?'has-error':''}}">
-                                {!! Form::label('username', 'Username:', ['class' => 'control-label col-sm-2']) !!}
+                                {!! Form::label('username', 'Nome do usuário:', ['class' => 'control-label col-sm-2']) !!}
                                 <div class="col-sm-8">
                                     {!! Form::text('username', null, ['class' => 'form-control']) !!}
                                     {!! $errors->first("username",'<span class="help-block">:message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{$errors->has('address')?'has-error':''}}">
-                                {!! Form::label('address', 'Address:', ['class' => 'control-label col-sm-2']) !!}
+                                {!! Form::label('address', 'Endereço:', ['class' => 'control-label col-sm-2']) !!}
                                 <div class="col-sm-8">
                                     {!! Form::text('address', null, ['class' => 'form-control']) !!}
                                     {!! $errors->first("address",'<span class="help-block">:message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{$errors->has('description')?'has-error':''}}">
-                                {!! Form::label('description', 'Description(Additional Information):', ['class' => 'control-label col-sm-2']) !!}
+                                {!! Form::label('description', 'Descrição(Informação adicional):', ['class' => 'control-label col-sm-2']) !!}
                                 <div class="col-sm-10">
                                     {!! Form::textarea('description', null, ['class' => 'form-control b-wysihtml5-editor']) !!}
                                     {!! $errors->first("description",'<span class="help-block">:message</span>') !!}
@@ -73,7 +73,7 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-8">
                                     <button type="submit" class="btn btn-primary" value="btnprofile" name="btnprofile">
-                                        Update Profile
+                                        Atualizar Perfil
                                     </button>
                                 </div>
                             </div>
@@ -82,14 +82,14 @@
                         <div class="tab-pane" id="ch_pwd">
                             {!! Form::model($profile,['class'=>'form-horizontal']) !!}
                             <div class="form-group {{$errors->has('old_password')?'has-error':''}}">
-                                {!! Form::label('old_password', 'Old Password:', ['class' => 'control-label col-sm-2']) !!}
+                                {!! Form::label('old_password', 'Senha antiga:', ['class' => 'control-label col-sm-2']) !!}
                                 <div class="col-sm-8">
                                     {!! Form::password('old_password', ['class' => 'form-control']) !!}
                                     {!! $errors->first("old_password",'<span class="help-block">:message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{$errors->has('new_password')?'has-error':''}}">
-                                {!! Form::label('new_password', 'New Password:', ['class' => 'control-label col-sm-2']) !!}
+                                {!! Form::label('new_password', 'Nova senha:', ['class' => 'control-label col-sm-2']) !!}
                                 <div class="col-sm-8">
                                     {!! Form::password('new_password', ['class' => 'form-control']) !!}
                                     {!! $errors->first("new_password",'<span class="help-block">:message</span>') !!}
@@ -98,7 +98,7 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-8">
                                     <button type="submit" class="btn btn-primary" value="btnpass" name="btnpass">
-                                        Change Password
+                                        Trocar Senha
                                     </button>
                                 </div>
                             </div>

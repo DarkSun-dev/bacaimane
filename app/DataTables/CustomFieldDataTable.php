@@ -18,7 +18,7 @@ class CustomFieldDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'custom_fields.datatables_actions')
+        return $dataTable->addColumn('tipo de modelo','nome','validação','actio', 'custom_fields.datatables_actions')
             ->editColumn('model_type',function (CustomField $customField){
                 return config('settings_array.model_types_plural')[$customField->model_type];
             });
@@ -68,9 +68,9 @@ class CustomFieldDataTable extends DataTable
     {
         return [
             'id',
-            'model_type',
-            'name',
-            'validation'
+            'tipo de modelo',
+            'nome',
+            'validação'
         ];
     }
 

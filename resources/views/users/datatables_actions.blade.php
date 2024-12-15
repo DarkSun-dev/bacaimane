@@ -14,7 +14,7 @@
     @can('delete users')
         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', [
             'type' => 'submit',
-            'title' => 'Delete',
+            'title' => 'Eliminar',
             'class' => 'btn btn-danger btn-xs',
             'onclick' => "return conformDel(this,event)"
         ]) !!}

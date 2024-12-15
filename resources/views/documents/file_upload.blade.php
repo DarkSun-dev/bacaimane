@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title',"Upload ".ucfirst(config('settings.file_label_plural')))
+@section('title',"Carregar arquivo Pasta")
 @section('css')
     <style>
 
@@ -20,14 +20,14 @@
                         <div class="form-group text-center">
                             <label class="img-picker-label">
                                 <img class="img-picker"
-                                     src="http://dummyimage.com/400x200/f5f5f5/000000&text=Click+to+upload+{{config('settings.file_label_plural')}}"
+                                     src="http://dummyimage.com/400x200/f5f5f5/000000&text=Clique+para+carregar+os+{{config('settings.file_label_plural')}}"
                                      alt="Pick a file" height="120"/>
                             </label>
                             {!! Form::file('files[@{{index}}][file]', ['style'=>'margin:0 auto;','class'=>'image-picker-input']) !!}
                         </div>
                     </div>
-                    {!! Form::bsSelect('files[@{{index}}][file_type_id]', $fileTypes, null, ['class'=>'form-control'], ucfirst(config('settings.file_label_singular'))." Type") !!}
-                    {!! Form::bsText('files[@{{index}}][name]', null, [], ucfirst(config('settings.file_label_singular'))." Name") !!}
+                    {!! Form::bsSelect('files[@{{index}}][file_type_id]', $fileTypes, null, ['class'=>'form-control'], "Tipo de ".ucfirst(config('settings.file_label_singular'))) !!}
+                    {!! Form::bsText('files[@{{index}}][name]', null, [], " Nome do ".ucfirst(config('settings.file_label_singular'))) !!}
                     @foreach ($customFields as $customField)
                         {!! Form::bsText("files[@{{index}}][custom_fields][$customField->name]",null,['class'=>'form-control typeahead','data-source'=>json_encode($customField->suggestions),'autocomplete'=>is_array($customField->suggestions)?'off':'on'], Str::title(str_replace('_',' ',$customField->name))) !!}
                     @endforeach
@@ -57,7 +57,7 @@
             $("#mainErrors").remove();
             $('form#frmUploads').before('<div id="mainErrors" class="alert alert-danger alert-dismissible">\n' +
                 '<button class="close" data-dismiss="alert" aria-label="close">&times;</button>\n' +
-                '<strong>Your Data Contain Errors, Please Review & Fix These Errors.</strong>\n' +
+                '<strong>Seus dados contem erros, Por favor revise e corrija esses erros.</strong>\n' +
                 '</div>');
             window.scrollTo(0, 0);
             for (var key in errors) {
@@ -116,7 +116,7 @@
 
         function submitForm(frm) {
             var oldHtmlBtn = $(frm).find("button[type='submit']").html();
-            $(frm).find("button[type='submit']").html('<i class="fa fa-spinner fa-spin"></i> Uploading...').attr("disabled", true);
+            $(frm).find("button[type='submit']").html('<i class="fa fa-spinner fa-spin"></i> Enviando...').attr("disabled", true);
             var formData = new FormData(frm);
             $.ajax({
                 url: '{{route('documents.files.store',$document->id)}}',
@@ -143,9 +143,9 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Upload {{ucfirst(config('settings.file_label_plural'))}} - <small>{{$document->name}}</small>
+            Atualização {{ucfirst(config('settings.file_label_plural'))}} - <small>{{$document->name}}</small>
             <button class="btn btn-primary pull-right" onclick="javascript:window.history.back();"><i
-                    class="fa fa-arrow-left"></i> Back
+                    class="fa fa-arrow-left"></i> Voltar
             </button>
         </h1>
     </section>
@@ -154,15 +154,16 @@
         @if ($errors->any())
             <div class="alert alert-danger alert-dismissible">
                 <button class="close" data-dismiss="alert" aria-label="close">&times;</button>
-                <strong>Check These Errors:</strong>
+                <strong>Cheque este erro:</strong>
                 {!! implode('', $errors->all('<li>:message</li>'))  !!}
             </div>
         @endif
         @if(!count($fileTypes))
             <div class="alert alert-warning alert-dismissible">
                 <button class="close" data-dismiss="alert" aria-label="close">&times;</button>
-                <strong>There is no {{config('settings.file_label_singular')." type"}},</strong> Please add atleast one.
-                <a href="{{route('fileTypes.create')}}">Add {{config('settings.file_label_singular')." type"}}</a>
+                <strong>Este não é {{config('settings.file_label_singular')." type"}},</strong> 
+                Por favor, adicione pelo menos um.
+                <a href="{{route('fileTypes.create')}}">Adicionar {{config('settings.file_label_singular')." type"}}</a>
             </div>
         @endif
         {!! Form::open(['route' => ['documents.files.store',$document->id],'files'=>true, 'id'=>'frmUploads']) !!}
@@ -171,9 +172,9 @@
         </div>
         <div style="text-align: center">
             <button type="button" class="btn btn-info btn-sm" onclick="addRow()"><i class="fa fa-plus"></i>
-                Add {{ucfirst(config('settings.file_label_singular'))}}
+                Adicionar {{ucfirst(config('settings.file_label_singular'))}}
             </button>
-            <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Upload</button>
+            <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> Atualizar</button>
         </div>
         {!! Form::close() !!}
     </div>

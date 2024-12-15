@@ -74,7 +74,7 @@ class TagController extends AppBaseController
             Permission::create(['name' => $perm_key . $tag->id]);
         }
 
-        Flash::success(ucfirst(config('settings.tags_label_singular')) . " saved successfully.");
+        Flash::success(ucfirst(config('settings.tags_label_singular')) . " salva com sucesso.");
 
         return redirect(route('tags.index'));
     }
@@ -92,7 +92,7 @@ class TagController extends AppBaseController
         $this->authorize('view', $tag);
 
         if (empty($tag)) {
-            Flash::error(ucfirst(config('settings.tags_label_singular')) . ' not found');
+            Flash::error(ucfirst(config('settings.tags_label_singular')) . ' não encontrado');
 
             return redirect(route('tags.index'));
         }
@@ -121,7 +121,7 @@ class TagController extends AppBaseController
         $customFields = CustomField::where('model_type', 'tags')->get();
 
         if (empty($tag)) {
-            Flash::error(ucfirst(config('settings.tags_label_singular')) . ' not found');
+            Flash::error(ucfirst(config('settings.tags_label_singular')) . ' não encontrada');
 
             return redirect(route('tags.index'));
         }
@@ -143,14 +143,14 @@ class TagController extends AppBaseController
         $this->authorize('update', $tag);
 
         if (empty($tag)) {
-            Flash::error(ucfirst(config('settings.tags_label_singular')) . ' not found');
+            Flash::error(ucfirst(config('settings.tags_label_singular')) . ' não encontrada');
 
             return redirect(route('tags.index'));
         }
 
         $tag = $this->tagRepository->update($request->all(), $id);
 
-        Flash::success(ucfirst(config('settings.tags_label_singular')) . ' updated successfully.');
+        Flash::success(ucfirst(config('settings.tags_label_singular')) . ' atualizada com sucesso.');
 
         return redirect(route('tags.index'));
     }
@@ -168,17 +168,17 @@ class TagController extends AppBaseController
         $this->authorize('delete', $tag);
 
         if (empty($tag)) {
-            Flash::error(ucfirst(config('settings.tags_label_singular')) . ' not found');
+            Flash::error(ucfirst(config('settings.tags_label_singular')) . ' não encontrada');
             return redirect(route('tags.index'));
         }
         try {
             $this->tagRepository->deleteWithPermissions($tag);
         } catch (QueryException $e) {
-            Flash::error('This ' . config('settings.tags_label_singular') . ' has ' . config('settings.document_label_plural') . '. Please delete ' . config('settings.document_label_plural') . ' and try again later.');
+            Flash::error('Este ' . config('settings.tags_label_singular') . ' tem ' . config('settings.document_label_plural') . '. por favor elimine ' . config('settings.document_label_plural') . ' e tente novamente.');
             return redirect(route('tags.index'));
         }
 
-        Flash::success(ucfirst(config('settings.tags_label_singular')) . ' deleted successfully.');
+        Flash::success(ucfirst(config('settings.tags_label_singular')) . ' Eliminada com sucesso.');
         return redirect(route('tags.index'));
     }
 }

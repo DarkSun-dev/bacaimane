@@ -101,8 +101,8 @@ class DocumentController extends Controller
         $this->authorize('store', [Document::class, $data['tags']]);
 
         $document = $this->documentRepository->createWithTags($data);
-        Flash::success(ucfirst(config('settings.document_label_singular')) . " Saved Successfully");
-        $document->newActivity(ucfirst(config('settings.document_label_singular')) . " Created");
+        Flash::success(ucfirst(config('settings.document_label_singular')) . " Salvo com sucesso");
+        $document->newActivity(ucfirst(config('settings.document_label_singular')) . " Criado");
 
         //create permission for new document
         foreach (config('constants.DOCUMENT_LEVEL_PERMISSIONS') as $perm_key => $perm) {
@@ -149,23 +149,23 @@ class DocumentController extends Controller
 
     public function storePermission($id, Request $request)
     {
-        abort_if(!auth()->user()->can('user manage permission'), 403, 'This action is unauthorized .');
+        abort_if(!auth()->user()->can('user manage permission'), 403, 'Esta ação não é autorizada .');
         $input = $request->all();
         $user = User::findOrFail($input['user_id']);
         $doc_permissions = $input['document_permissions'];
         $document = Document::findOrFail($id);
         $this->permissionRepository->setDocumentLevelPermissionForUser($user,$document,$doc_permissions);
-        Flash::success(ucfirst(config('settings.document_label_singular')) . " Permission allocated");
+        Flash::success(ucfirst(config('settings.document_label_singular')) . " Permissão alocada");
         return redirect()->back();
     }
 
     public function deletePermission($documentId, $userId)
     {
-        abort_if(!auth()->user()->can('user manage permission'), 403, 'This action is unauthorized.');
+        abort_if(!auth()->user()->can('user manage permission'), 403, 'Esta ação não é autorizada.');
         $user = User::findOrFail($userId);
         $document = Document::findOrFail($documentId);
         $this->permissionRepository->deleteDocumentLevelPermissionForUser($document,$user);
-        Flash::success(ucfirst(config('settings.document_label_singular')) . " Permission removed");
+        Flash::success(ucfirst(config('settings.document_label_singular')) . " Permissão removida");
         return redirect()->back();
     }
 
@@ -198,7 +198,7 @@ class DocumentController extends Controller
         $this->authorize('update', [$document, $data['tags']]);
         $this->documentRepository->updateWithTags($data,$document);
         $document->newActivity(ucfirst(config('settings.document_label_singular')) . " Updated");
-        Flash::success(ucfirst(config('settings.document_label_singular')) . " Updated Successfully");
+        Flash::success(ucfirst(config('settings.document_label_singular')) . " Atualizado com sucesso");
         return redirect()->route('documents.index');
     }
 
@@ -212,9 +212,9 @@ class DocumentController extends Controller
     {
         $document = Document::findOrFail($id);
         $this->authorize('delete', $document);
-        $document->newActivity(ucfirst(config('settings.document_label_singular')) . " Deleted");
+        $document->newActivity(ucfirst(config('settings.document_label_singular')) . " Eliminado");
         $this->documentRepository->deleteWithFiles($document,true);
-        Flash::success(ucfirst(config('settings.document_label_singular')) . " Deleted Successfully");
+        Flash::success(ucfirst(config('settings.document_label_singular')) . " Eliminado com sucesso");
         return redirect()->route('documents.index');
     }
 
@@ -225,21 +225,21 @@ class DocumentController extends Controller
         $action = $request->get('action');
         $comment = $request->get('vcomment',"");
         if (!empty($comment)) {
-            $comment = " with comment: <i>" . $comment . "</i>";
+            $comment = " com o comentario: <i>" . $comment . "</i>";
         }
         $msg = "";
         if ($action == 'approve') {
             $this->documentRepository->approveDoc($document);
-            $msg = "Approved";
+            $msg = "Aprovado";
         } elseif ($action == 'reject') {
             $this->documentRepository->rejectDoc($document);
-            $msg = "Rejected";
+            $msg = "Rejeitado";
         } else {
             abort(404);
         }
         $document->newActivity(ucfirst(config('settings.document_label_singular')) . " $msg $comment");
 
-        Flash::success(ucfirst(config('settings.document_label_singular')) . " $msg Successfully");
+        Flash::success(ucfirst(config('settings.document_label_singular')) . " $msg Sucesso");
         return redirect()->back();
     }
 
@@ -247,7 +247,7 @@ class DocumentController extends Controller
     {
         $document = Document::find($id);
         if(empty($document)){
-            Flash::error("Oh No..., try to create some ".config('settings.document_label_singular')." before uploading ".config('settings.file_label_plural'));
+            Flash::error("Ohh não..., tenta criar novamente o ".config('settings.document_label_singular')." antes de carregar ".config('settings.file_label_plural'));
             return redirect()->route('documents.index');
         }
         $this->authorize('update', [$document, $document->tags->pluck('id')]);
@@ -264,8 +264,8 @@ class DocumentController extends Controller
         /* Prepare final data */
         $filesData = $this->prepareFilesData($filesData);
         $this->documentRepository->saveFilesWithDoc($filesData, $document);
-        $document->newActivity(count($filesData) . " New " . ucfirst(config('settings.file_label_plural')) . " Uploaded To " . ucfirst(config('settings.document_label_singular')));
-        Flash::success(ucfirst(config('settings.file_label_plural')) . " Uploaded Successfully");
+        $document->newActivity(count($filesData) . " Novo " . ucfirst(config('settings.file_label_plural')) . " Carregado para " . ucfirst(config('settings.document_label_singular')));
+        Flash::success(ucfirst(config('settings.file_label_plural')) . " Enviado com sucesso");
         if (!$request->ajax()) {
             return redirect()->route('documents.show', ['id' => $document->id]);
         } else {
@@ -317,9 +317,9 @@ class DocumentController extends Controller
     {
         $file = File::findOrFail($id);
         $this->authorize('delete', $file->document);
-        $file->document->newActivity($file->name . " Deleted From " . ucfirst(config('settings.document_label_singular')));
+        $file->document->newActivity($file->name . " Eliminado para " . ucfirst(config('settings.document_label_singular')));
         $this->documentRepository->deleteFile($file);
-        Flash::success(ucfirst(config('settings.file_label_singular')) . " Deleted Successfully");
+        Flash::success(ucfirst(config('settings.file_label_singular')) . " Eliminado com sucesso");
         return redirect()->back();
     }
 }

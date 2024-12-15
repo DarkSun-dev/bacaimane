@@ -1,18 +1,18 @@
 @extends('layouts.app')
-@section('title','Show Custom Field')
+@section('title','Mostrar campos personalizados')
 @section('content')
     <section class="content-header">
         <h1>
-            Custom Field
+            Campos Personalizados
             <span class="pull-right">
                 <a href="{{ route('customFields.index') }}" class="btn btn-default">
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i> Back
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i> Voltar
                 </a>
                 <a href="{{ route('customFields.edit',$customField->id) }}" class="btn btn-primary">
-                    <i class="fa fa-edit" aria-hidden="true"></i> Edit
+                    <i class="fa fa-edit" aria-hidden="true"></i> Editar
                 </a>
                 {!! Form::open(['route' => ['customFields.destroy', $customField->id], 'method' => 'delete','style'=>'display:inline']) !!}
-                {!! Form::button('<i class="fa fa-trash"></i> Delete', [
+                {!! Form::button('<i class="fa fa-trash"></i> Eliminar', [
                 'type' => 'submit',
                 'title' => 'Delete',
                 'class' => 'btn btn-danger',

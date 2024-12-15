@@ -1,14 +1,14 @@
 @extends('layouts.app')
-@section('title','Users List')
+@section('title','Lista de usuarios')
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Users</h1>
+        <h1 class="pull-left">Usuários</h1>
         <h1 class="pull-right">
             @can('create users')
                 <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px"
                    href="{!! route('users.create') !!}">
                     <i class="fa fa-plus"></i>
-                    Add New
+                    Adicionar 
                 </a>
             @endcan
         </h1>
